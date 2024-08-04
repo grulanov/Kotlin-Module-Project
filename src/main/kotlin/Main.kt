@@ -1,3 +1,13 @@
+import di.AppContainer
+import presentation.common.ScreenEventsHandler
+
+private val appContainer = AppContainer()
+
 fun main(args: Array<String>) {
-    println("Hello World!")
+    val archivesScreen = appContainer.screens.archivesBuilder.build(object : ScreenEventsHandler {
+        override fun onFinish() {
+            appContainer.scannerProvider.closeCurrentScanner()
+        }
+    })
+    archivesScreen.start()
 }
