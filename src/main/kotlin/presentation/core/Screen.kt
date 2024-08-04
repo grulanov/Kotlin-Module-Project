@@ -1,4 +1,4 @@
-package presentation.common
+package presentation.core
 
 interface Screen {
     fun start()

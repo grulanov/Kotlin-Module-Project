@@ -10,6 +10,8 @@ import logic.storages.NotesStorage
 import logic.storages.NotesStorageImpl
 import logic.usecases.ArchivedNotesUseCase
 import logic.usecases.ArchivedNotesUseCaseImpl
+import presentation.common.ScreenListManager
+import presentation.common.ScreenListManagerImpl
 import presentation.screens.archives.ArchivesBuilder
 import presentation.screens.archives.ArchivesBuilderImpl
 import utils.ScannerProvider
@@ -22,9 +24,7 @@ class AppContainer {
             get() = ArchivesBuilderImpl(appContainer)
     }
 
-    val screens: Screens by lazy {
-        Screens(this)
-    }
+    val screens: Screens = Screens(this)
 
     val scannerProvider: ScannerProvider = ScannerProviderImpl()
 
@@ -39,5 +39,8 @@ class AppContainer {
 
     val archivedNotesUseCase: ArchivedNotesUseCase
         get() = ArchivedNotesUseCaseImpl(archivesRepository, notesRepository)
+
+    val screenListManager: ScreenListManager
+        get() = ScreenListManagerImpl(scannerProvider)
 
 }

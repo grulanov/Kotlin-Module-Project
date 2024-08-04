@@ -15,7 +15,7 @@ class ArchivesStorageImpl: ArchivesStorage {
     private var archives: MutableMap<UUID, Archive> = mutableMapOf()
 
     override fun addOrUpdateArchive(archive: Archive) {
-        archives.put(archive.id, archive)
+        archives[archive.id] = archive
     }
 
     override fun getArchives(): List<Archive> {
@@ -23,7 +23,7 @@ class ArchivesStorageImpl: ArchivesStorage {
     }
 
     override fun getArchiveById(id: UUID): Archive? {
-        return archives.get(id)
+        return archives[id]
     }
 
     override fun getArchiveByName(name: String): Archive? {

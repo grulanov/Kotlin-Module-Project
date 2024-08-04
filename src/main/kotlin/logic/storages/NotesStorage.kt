@@ -14,10 +14,10 @@ class NotesStorageImpl: NotesStorage {
     private var notes: MutableMap<UUID, Note> = mutableMapOf()
 
     override fun addOrUpdateNote(note: Note) {
-        notes.put(note.id, note)
+        notes[note.id] = note
     }
 
     override fun getNoteById(id: UUID): Note? {
-        return notes.get(id)
+        return notes[id]
     }
 }

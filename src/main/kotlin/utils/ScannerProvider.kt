@@ -4,7 +4,6 @@ import java.util.Scanner
 
 interface ScannerProvider {
     val scanner: Scanner
-
     fun closeCurrentScanner()
 }
 

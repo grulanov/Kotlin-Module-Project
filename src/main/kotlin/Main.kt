@@ -1,5 +1,5 @@
 import di.AppContainer
-import presentation.common.ScreenEventsHandler
+import presentation.core.ScreenEventsHandler
 
 private val appContainer = AppContainer()
 
