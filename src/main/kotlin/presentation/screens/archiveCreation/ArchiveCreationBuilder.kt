@@ -1,24 +1,22 @@
-package presentation.screens.archives
+package presentation.screens.archiveCreation
 
 import di.AppContainer
 import presentation.core.BaseBuilder
 import presentation.core.Screen
 import presentation.core.ScreenEventsHandler
 
-interface ArchivesBuilder {
+interface ArchiveCreationBuilder {
     fun build(eventsHandler: ScreenEventsHandler?): Screen
 }
 
-class ArchivesBuilderImpl(
+class ArchiveCreationBuilderImpl(
         appContainer: AppContainer
-): BaseBuilder(appContainer), ArchivesBuilder {
+): BaseBuilder(appContainer), ArchiveCreationBuilder {
     override fun build(eventsHandler: ScreenEventsHandler?): Screen {
-        return ArchivesScreen(
+        return ArchiveCreationScreen(
                 eventsHandler,
-                appContainer.screenListManager,
                 appContainer.archivesRepository,
-                appContainer.screens.notesBuilder,
-                appContainer.screens.archiveCreationBuilder
+                appContainer.scannerProvider
         )
     }
 }

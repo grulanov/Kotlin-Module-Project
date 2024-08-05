@@ -1,7 +1,5 @@
 package presentation.core
 
-import utils.ScannerProvider
-
 interface ScreenEventsHandler {
     fun onFinish()
 }

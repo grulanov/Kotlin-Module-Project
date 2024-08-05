@@ -4,13 +4,16 @@ import logic.repositories.ArchivesRepository
 import presentation.common.ScreenListManager
 import presentation.core.BaseScreen
 import presentation.core.ScreenEventsHandler
-import utils.ScannerProvider
+import presentation.screens.archiveCreation.ArchiveCreationBuilder
+import presentation.screens.notes.NotesBuilder
 import java.util.UUID
 
 class ArchivesScreen(
         eventsHandler: ScreenEventsHandler?,
         private val screenListManager: ScreenListManager,
-        private val archivesRepository: ArchivesRepository
+        private val archivesRepository: ArchivesRepository,
+        private val notesBuilder: NotesBuilder,
+        private val archiveCreationBuilder: ArchiveCreationBuilder
 ): BaseScreen(eventsHandler), ScreenListManager.EventsHandler<UUID> {
     init {
         screenListManager.newItemTitle = "Создать архив"
@@ -22,7 +25,12 @@ class ArchivesScreen(
     }
 
     override fun onNewItem() {
-        TODO("Not yet implemented")
+        val archiveScreen = archiveCreationBuilder.build(object : ScreenEventsHandler {
+            override fun onFinish() {
+                start()
+            }
+        })
+        archiveScreen.start()
     }
 
     override fun onExit() {
@@ -30,6 +38,11 @@ class ArchivesScreen(
     }
 
     override fun onItemSelection(id: UUID) {
-        TODO("Not yet implemented")
+        val notesScreen = notesBuilder.build(id, object : ScreenEventsHandler {
+            override fun onFinish() {
+                start()
+            }
+        })
+        notesScreen.start()
     }
 }

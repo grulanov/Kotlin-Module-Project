@@ -49,15 +49,13 @@ class ScreenListManagerImpl(private val scannerProvider: ScannerProvider): Scree
 
             when (userInput) {
                 0 -> eventsHandler.onNewItem()
-                (fullListItems.count() - 1) -> {
-                    eventsHandler.onExit()
-                    return
-                }
+                (fullListItems.count() - 1) -> eventsHandler.onExit()
                 else -> {
                     val selectedItem = items[userInput - 1]
                     eventsHandler.onItemSelection(selectedItem.id)
                 }
             }
+            return
         } while (true)
     }
 }
